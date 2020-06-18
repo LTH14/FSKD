@@ -2,7 +2,7 @@
 
 This repository contains the samples code for FSKD, [Few Sample Knowledge Distillation for Efficient Network Compression](https://arxiv.org/abs/1812.01839) (CVPR 2020) by Tianhong Li, Jianguo Li, Zhuang Liu and Changshui Zhang.
 
-The repo shows how to train a VGG-16 model on CIFAR-10 and then prune it with very few unlabeled samples using FSKD. It can also be extended to other models and datasets.
+The repo shows how to train a VGG-16 model on CIFAR-10 and then prune it with very few unlabeled samples using FSKD. It can also be extended to other models, network pruning / decoupling methods and datasets.
 ## Training VGG-16
 
 ```shell
