@@ -23,4 +23,6 @@ This file performs training of different network structure. You can specify the 
 
 This file performs FSKD on specified VGG pretrained model. You can specify the number of samples used here. The script first build up the pruned VGG model from the original model. It then add the additional 1x1 conv layer, performs FSKD layer by layer (recover_one_layer()), and finally absorb the additional 1x1 conv layer back to the model.
 
-To apply FSKD on your own model and dataset, you may pay more attention on these several functions: add_pwconv() and absorb_pwconv() in models/vgg.py which add and merge the 1x1 conv layer, and recover_one_layer() in vggprune_pruning.py, which estimate the parameters of one 1x1 conv layer using few samples.
+## TIPs
+
+To apply FSKD on your own model and dataset, you may pay more attention on these several functions: add_pwconv() and absorb_pwconv() in models/vgg.py which add and merge the 1x1 conv layer, and recover_one_layer() in vggprune_pruning.py, which estimates the parameters of one 1x1 conv layer using few samples.
