@@ -246,7 +246,7 @@ def recover_one_layer(new_model, origin_model, num_sample, layer_idx, mask, trai
     #     np.linalg.norm(np.dot(new_output, x) - origin_output) / (np.shape(origin_output)[0] * np.shape(origin_output)[1])))
     x = np.transpose(x)
     new_model.pwconv[layer_idx].weight.data.copy_(torch.from_numpy(x).view(C_new, C_new, 1, 1))
-    print("Reocver from {} takes {}s".format(layer_idx, time.time() - recover_time))
+    print("Reocver from layer {} takes {}s".format(layer_idx, time.time() - recover_time))
     return new_model, time.time() - cpu_time
 
 
@@ -277,8 +277,8 @@ def test(model):
         pred = output.data.max(1, keepdim=True)[1] # get the index of the max log-probability
         correct += pred.eq(target.data.view_as(pred)).cpu().sum()
 
-    print('\nTest set: Accuracy: {}/{} ({:.3f}%)\n'.format(
-        correct, len(test_loader.dataset), 100. * correct / len(test_loader.dataset)))
+    print('\nTest set: Accuracy: {}/{} ({:.3f})\n'.format(
+        correct, len(test_loader.dataset), 100. * correct.float() / len(test_loader.dataset)))
     return correct
 
 
@@ -317,4 +317,5 @@ def accuracy(output, target, topk=(1,)):
 
 
 if __name__ == '__main__':
-    main()
+    with torch.no_grad():
+        main()
